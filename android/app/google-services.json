@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "914544720247",
+    "firebase_url": "https://bwa-flutix-14467.firebaseio.com",
+    "project_id": "bwa-flutix-14467",
+    "storage_bucket": "bwa-flutix-14467.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914544720247:android:e7136066ff24e9ee324972",
+        "android_client_info": {
+          "package_name": "com.dwirandyh.flutter_tix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914544720247-emultincokr9fm4es2g3ara5rtcg00df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMSBZfvVKTYELmky0bi8SHCXK8g4pd-mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914544720247-emultincokr9fm4es2g3ara5rtcg00df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
