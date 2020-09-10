@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>914544720247-fneo631m75kip87qn38c23lf9d97l66q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.914544720247-fneo631m75kip87qn38c23lf9d97l66q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDAfIcLS5X7Z2eIHffLpPqP-qJF5uWfFR4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>914544720247</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dwirandyh.flutterTix</string>
+	<key>PROJECT_ID</key>
+	<string>bwa-flutix-14467</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bwa-flutix-14467.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:914544720247:ios:042789b4f375c112324972</string>
+	<key>DATABASE_URL</key>
+	<string>https://bwa-flutix-14467.firebaseio.com</string>
+</dict>
+</plist>
