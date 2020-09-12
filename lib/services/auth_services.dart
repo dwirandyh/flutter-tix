@@ -30,7 +30,7 @@ class AuthServices {
       User user = await result.user.fromFireStore();
       return ServiceResult<User>(data: user);
     } catch (e) {
-      return ServiceResult<User>(message: e.toString().split(',')[1]);
+      return ServiceResult<User>(message: e.toString().split(',')[1].trim());
     }
   }
 
