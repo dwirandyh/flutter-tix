@@ -3,7 +3,7 @@ part of 'pages.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FirebaseUser firebaseUser = Provider.of<FirebaseUser>(context);
+    FireAuth.User firebaseUser = Provider.of<FireAuth.User>(context);
 
     if (firebaseUser == null) {
       if (!(prevPageEvent is GoToSplashPage)) {

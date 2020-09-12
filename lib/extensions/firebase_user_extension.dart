@@ -1,6 +1,6 @@
 part of 'extensions.dart';
 
-extension FirebaseUserExtension on FirebaseUser {
+extension FirebaseUserExtension on FireAuth.User {
   User convertToUser(
       {String name = "No Name",
       List<String> selectedGenre = const [],
