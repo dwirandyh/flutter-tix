@@ -21,25 +21,28 @@ class MoviePage extends StatelessWidget {
             if (userState is UserLoaded) {
               return Row(
                 children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      SpinKitFadingCircle(
-                        color: accentColor2,
-                        size: 50,
-                      ),
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: (userState.user.profilePicture == ""
-                                    ? AssetImage("assets/user_pic.png")
-                                    : NetworkImage(
-                                        userState.user.profilePicture)),
-                                fit: BoxFit.cover)),
-                      )
-                    ],
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Color(0XFF5F558B), width: 1)),
+                    child: Stack(
+                      children: <Widget>[
+                        SpinKitFadingCircle(color: accentColor2, size: 50),
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: (userState.user.profilePicture == ""
+                                      ? AssetImage("assets/user_pic.png")
+                                      : NetworkImage(
+                                          userState.user.profilePicture)),
+                                  fit: BoxFit.cover)),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(width: 16),
                   Column(
