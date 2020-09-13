@@ -25,7 +25,7 @@ class MoviePage extends StatelessWidget {
                     padding: EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Color(0XFF5F558B), width: 1)),
+                        border: Border.all(color: Color(0xFF5F558B), width: 1)),
                     child: Stack(
                       children: <Widget>[
                         SpinKitFadingCircle(color: accentColor2, size: 50),

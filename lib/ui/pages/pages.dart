@@ -18,3 +18,6 @@ part 'sign_in_page.dart';
 part 'wrapper.dart';
 part 'splash_page.dart';
 part 'movie_page.dart';
+part 'sign_up_page.dart';
+part 'preference_page.dart';
+part 'account_confirmation_page.dart';
