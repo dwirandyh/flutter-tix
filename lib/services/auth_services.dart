@@ -1,13 +1,13 @@
 part of 'services.dart';
 
 class AuthServices {
-  static FirebaseAuth auth = FirebaseAuth.instance;
+  static FireAuth.FirebaseAuth auth = FireAuth.FirebaseAuth.instance;
 
   static Future<ServiceResult<User>> signUp(String email, String password,
       String name, List<String> selectedGenres, String selectedLanguage) async {
     try {
-      AuthResult result = await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      FireAuth.UserCredential result = await auth
+          .createUserWithEmailAndPassword(email: email, password: password);
 
       User user = result.user.convertToUser(
           name: name,
@@ -25,12 +25,12 @@ class AuthServices {
   static Future<ServiceResult<User>> signIn(
       {@required String email, @required String password}) async {
     try {
-      AuthResult result = await auth.signInWithEmailAndPassword(
+      FireAuth.UserCredential result = await auth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = await result.user.fromFireStore();
       return ServiceResult<User>(data: user);
     } catch (e) {
-      return ServiceResult<User>(message: e.toString().split(',')[1].trim());
+      return ServiceResult<User>(message: e.message);
     }
   }
 
@@ -38,5 +38,5 @@ class AuthServices {
     await auth.signOut();
   }
 
-  static Stream<FirebaseUser> get userStream => auth.onAuthStateChanged;
+  static Stream<FireAuth.User> get userStream => auth.authStateChanges();
 }
