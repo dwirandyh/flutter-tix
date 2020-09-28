@@ -18,7 +18,7 @@ class AuthServices {
 
       return ServiceResult<User>(data: user);
     } catch (e) {
-      return ServiceResult<User>(message: e.toString());
+      return ServiceResult<User>(message: e.message);
     }
   }
 

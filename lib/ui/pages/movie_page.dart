@@ -4,21 +4,27 @@ class MoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[header(context)],
-    );
-  }
-
-  Widget header(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          color: accentColor1,
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
-        ),
-        padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (_, userState) {
+      children: <Widget>[
+        // note: HEADER
+        Container(
+          decoration: BoxDecoration(
+              color: accentColor1,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20))),
+          padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
+          child: BlocBuilder<UserBloc, UserState>(
+              builder: (blocContext, userState) {
             if (userState is UserLoaded) {
+              if (imageFileToUpload != null) {
+                uploadImage(imageFileToUpload).then((downloadURL) {
+                  imageFileToUpload = null;
+                  context
+                      .bloc<UserBloc>()
+                      .add(UpdateData(profileImage: downloadURL));
+                });
+              }
+
               return Row(
                 children: <Widget>[
                   Container(
@@ -28,7 +34,10 @@ class MoviePage extends StatelessWidget {
                         border: Border.all(color: Color(0xFF5F558B), width: 1)),
                     child: Stack(
                       children: <Widget>[
-                        SpinKitFadingCircle(color: accentColor2, size: 50),
+                        SpinKitFadingCircle(
+                          color: accentColor2,
+                          size: 50,
+                        ),
                         Container(
                           width: 50,
                           height: 50,
@@ -40,11 +49,13 @@ class MoviePage extends StatelessWidget {
                                       : NetworkImage(
                                           userState.user.profilePicture)),
                                   fit: BoxFit.cover)),
-                        ),
+                        )
                       ],
                     ),
                   ),
-                  SizedBox(width: 16),
+                  SizedBox(
+                    width: 16,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -60,13 +71,14 @@ class MoviePage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                          NumberFormat.currency(
-                                  locale: "id_ID",
-                                  decimalDigits: 0,
-                                  symbol: "IDR ")
-                              .format(userState.user.balance),
-                          style: yellowNumberFont.copyWith(
-                              fontSize: 14, fontWeight: FontWeight.w400))
+                        NumberFormat.currency(
+                                locale: "id_ID",
+                                decimalDigits: 0,
+                                symbol: "IDR ")
+                            .format(userState.user.balance),
+                        style: yellowNumberFont.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.w400),
+                      )
                     ],
                   )
                 ],
@@ -77,7 +89,9 @@ class MoviePage extends StatelessWidget {
                 size: 50,
               );
             }
-          },
-        ),
-      );
+          }),
+        )
+      ],
+    );
+  }
 }

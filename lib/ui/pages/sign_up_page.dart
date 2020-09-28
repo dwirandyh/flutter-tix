@@ -52,9 +52,9 @@ class _SignUpPageState extends State<SignUpPage> {
               message: errorMessage)
           .show(context);
     } else {
-      widget.registrationData.name = nameController.text;
-      widget.registrationData.email = emailController.text;
-      widget.registrationData.password = passwordController.text;
+      widget.registrationData.name = nameController.text.trim();
+      widget.registrationData.email = emailController.text.trim();
+      widget.registrationData.password = passwordController.text.trim();
 
       Navigator.push(
         context,

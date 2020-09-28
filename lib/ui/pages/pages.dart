@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart' as FireAuth;
 import 'package:flushbar/flushbar.dart';
@@ -10,7 +8,6 @@ import 'package:flutter_tix/models/models.dart';
 import 'package:flutter_tix/shared/shared.dart';
 import 'package:flutter_tix/ui/widgets/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +22,3 @@ part 'movie_page.dart';
 part 'sign_up_page.dart';
 part 'preference_page.dart';
 part 'account_confirmation_page.dart';
-
-Future<File> getImage() async {
-  var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-  return image;
-}

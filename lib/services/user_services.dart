@@ -18,12 +18,12 @@ class UserServices {
   static Future<User> getUser({@required String id}) async {
     DocumentSnapshot snapshot = await userCollection.doc(id).get();
     final data = snapshot.data();
-    return User(id, data["id"],
-        balance: data['balance'],
-        profilePicture: data['profilePicture'],
+    return User(id, data["id"] ?? "",
+        balance: data['balance'] ?? "",
+        profilePicture: data['profilePicture'] ?? "",
         selectedGenres:
             (data['selectedGenres'] as List).map((e) => e.toString()).toList(),
-        selectedLanguage: data['selectedLanguage'],
-        name: data['name']);
+        selectedLanguage: data['selectedLanguage'] ?? "",
+        name: data['name'] ?? "");
   }
 }

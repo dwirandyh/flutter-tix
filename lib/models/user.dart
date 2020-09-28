@@ -16,11 +16,21 @@ class User extends Equatable {
       this.selectedGenres,
       this.selectedLanguage});
 
+  User copyWith({String name, String profilePicture, int balance}) {
+    return User(this.id, this.email,
+        name: name ?? this.name,
+        profilePicture: profilePicture ?? this.profilePicture,
+        balance: balance ?? this.balance,
+        selectedGenres: this.selectedGenres,
+        selectedLanguage: this.selectedLanguage);
+  }
+
   @override
   String toString() {
     return "[$id] - $name, $email";
   }
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props =>
+      [id, email, name, profilePicture, selectedGenres, selectedLanguage];
 }

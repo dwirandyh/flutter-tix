@@ -74,6 +74,8 @@ class _AccountConfirmationState extends State<AccountConfirmation> {
                   isSignup = true;
                 });
 
+                imageFileToUpload = widget.registrationData.profileImage;
+
                 ServiceResult<User> result = await AuthServices.signUp(
                     widget.registrationData.email,
                     widget.registrationData.password,
@@ -92,6 +94,11 @@ class _AccountConfirmationState extends State<AccountConfirmation> {
                     backgroundColor: Color(0xFFFF5C83),
                     message: result.message,
                   ).show(context);
+                } else {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/',
+                    ModalRoute.withName('/'),
+                  );
                 }
               },
             ),
