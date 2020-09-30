@@ -9,6 +9,7 @@ class MoviePage extends StatelessWidget {
         nowPlaying(),
         browseMovie(),
         comingSoon(),
+        promo(),
         SizedBox(height: 100)
       ],
     );
@@ -209,6 +210,29 @@ class MoviePage extends StatelessWidget {
               }
             }),
           )
+        ],
+      );
+
+  Widget promo() => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+            child: Text(
+              "Get Lucky Daay",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Column(
+            children: dummyPromos
+                .map((e) => Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        defaultMargin, 0, defaultMargin, 16),
+                    child: PromoCard(e)))
+                .toList(),
+          ),
         ],
       );
 }
