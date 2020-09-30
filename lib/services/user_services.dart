@@ -18,7 +18,7 @@ class UserServices {
   static Future<User> getUser({@required String id}) async {
     DocumentSnapshot snapshot = await userCollection.doc(id).get();
     final data = snapshot.data();
-    return User(id, data["id"] ?? "",
+    return User(id, data["email"],
         balance: data['balance'] ?? "",
         profilePicture: data['profilePicture'] ?? "",
         selectedGenres:
