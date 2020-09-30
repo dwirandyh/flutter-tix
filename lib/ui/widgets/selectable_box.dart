@@ -10,16 +10,44 @@ class SelectableBox extends StatelessWidget {
   final TextStyle textStyle;
 
   SelectableBox(
-      {this.isSelected,
-      this.isEnabled,
-      this.width,
-      this.height,
+      {this.isSelected = false,
+      this.isEnabled = true,
+      this.width = 144,
+      this.height = 60,
       this.onTap,
       this.textStyle,
       @required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text(this.text));
+    return GestureDetector(
+      onTap: () {
+        if (onTap != null) {
+          onTap();
+        }
+      },
+      child: Container(
+        width: this.width,
+        height: this.height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          color: (!isEnabled)
+              ? Color(0xFFE4E4E4)
+              : isSelected ? accentColor2 : Colors.transparent,
+          border: Border.all(
+            color: (!isEnabled)
+                ? Color(0xFFE4E4E4)
+                : isSelected ? Colors.transparent : Color(0xFFE4E4E4),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            this.text ?? "None",
+            style: (textStyle ?? blackTextFont)
+                .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+        ),
+      ),
+    );
   }
 }
