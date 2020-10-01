@@ -41,14 +41,14 @@ class SplashPage extends StatelessWidget {
                     ),
                     color: mainColor,
                     onPressed: () {
-                      // context
-                      //     .bloc<PageBloc>()
-                      //     .add(GoToRegistrationPage(RegistrationData()));
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  SignUpPage(RegistrationData())));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpPage(
+                            RegistrationData(),
+                          ),
+                        ),
+                      );
                     }),
               ),
               Row(

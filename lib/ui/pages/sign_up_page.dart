@@ -21,6 +21,48 @@ class _SignUpPageState extends State<SignUpPage> {
 
     nameController.text = widget.registrationData.name;
     emailController.text = widget.registrationData.email;
+
+    passwordController.text = "";
+    confirmController.text = "";
+  }
+
+  void registerData() {
+    String errorMessage = "";
+    if (!(nameController.text.trim() != "" &&
+        emailController.text.trim() != "" &&
+        passwordController.text.trim() != "" &&
+        confirmController.text.trim() != "")) {
+      errorMessage = "Please fill all the fields";
+    } else {
+      if (passwordController.text.length < 6) {
+        errorMessage = "Password's length min 6 characters";
+      } else if (passwordController.text.trim() !=
+          confirmController.text.trim()) {
+        errorMessage = "Mismatch password and confirmed password";
+      } else if (!EmailValidator.validate(emailController.text.trim())) {
+        errorMessage = "Wrong formatted email address";
+      }
+    }
+
+    if (errorMessage.isNotEmpty) {
+      Flushbar(
+              duration: Duration(milliseconds: 1500),
+              flushbarPosition: FlushbarPosition.TOP,
+              backgroundColor: Color(0xFFFF5C83),
+              message: errorMessage)
+          .show(context);
+    } else {
+      widget.registrationData.name = nameController.text;
+      widget.registrationData.email = emailController.text;
+      widget.registrationData.password = passwordController.text;
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PreferencePage(widget.registrationData),
+        ),
+      );
+    }
   }
 
   @override
@@ -37,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
         children: <Widget>[
           Column(
             children: <Widget>[
-              navigationBar(context),
+              NavigationBar("Registration Page"),
               profileImage(),
               SizedBox(
                 height: 36,
@@ -66,6 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               TextField(
                 controller: passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -77,6 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               TextField(
                 controller: confirmController,
+                obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -87,68 +131,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 30,
               ),
               FloatingActionButton(
-                child: Icon(Icons.arrow_forward),
-                backgroundColor: mainColor,
-                elevation: 0,
-                onPressed: () {
-                  String errorMessage = "";
-                  if (!(nameController.text.trim() != "" &&
-                      emailController.text.trim() != "" &&
-                      passwordController.text.trim() != "" &&
-                      confirmController.text.trim() != "")) {
-                    errorMessage = "Please fill all the fields";
-                  } else if (passwordController.text.length < 6) {
-                    errorMessage = "Password's length min 6 characters";
-                  } else if (passwordController.text !=
-                      confirmController.text) {
-                    errorMessage = "Mismatch password and confirmed password";
-                  } else if (!EmailValidator.validate(emailController.text)) {
-                    errorMessage = "Wrong formatted email address";
-                  }
-
-                  if (errorMessage.isNotEmpty) {
-                    Flushbar(
-                      duration: Duration(milliseconds: 1500),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      backgroundColor: Color(0xFFFF5C83),
-                      message: "Mismatch password and confirmed password",
-                    ).show(context);
-                  } else {
-                    widget.registrationData.name = nameController.text;
-                    widget.registrationData.email = emailController.text;
-                    widget.registrationData.password = passwordController.text;
-                  }
-                },
-              )
+                  child: Icon(Icons.arrow_forward),
+                  backgroundColor: mainColor,
+                  elevation: 0,
+                  onPressed: this.registerData)
             ],
           )
         ],
       ),
     ));
   }
-
-  Widget navigationBar(BuildContext context) => Container(
-        margin: EdgeInsets.only(top: 20, bottom: 22),
-        height: 56,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(Icons.arrow_back, color: Colors.black),
-              ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text("Registration Page",
-                  style: blackTextFont.copyWith(fontSize: 20)),
-            )
-          ],
-        ),
-      );
 
   Widget profileImage() => Container(
         width: 90,
@@ -182,15 +174,17 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 28,
                   width: 28,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage(
-                              (widget.registrationData.profileImage == null)
-                                  ? "assets/btn_add_photo.png"
-                                  : "assets/btn_del_photo.png"))),
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage(
+                          (widget.registrationData.profileImage == null)
+                              ? "assets/btn_add_photo.png"
+                              : "assets/btn_del_photo.png"),
+                    ),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       );

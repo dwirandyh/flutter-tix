@@ -8,6 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tix/bloc/blocs.dart';
 import 'package:flutter_tix/models/models.dart';
 import 'package:flutter_tix/shared/shared.dart';
+import 'package:flutter_tix/ui/widgets/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
