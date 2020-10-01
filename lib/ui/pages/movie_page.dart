@@ -6,7 +6,7 @@ class MoviePage extends StatelessWidget {
     return ListView(
       children: <Widget>[
         header(context),
-        nowPlaying(),
+        nowPlaying(context),
         browseMovie(),
         comingSoon(),
         promo(),
@@ -104,7 +104,7 @@ class MoviePage extends StatelessWidget {
         }),
       );
 
-  Widget nowPlaying() => Column(
+  Widget nowPlaying(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -129,7 +129,14 @@ class MoviePage extends StatelessWidget {
                       left: (index == 0) ? defaultMargin : 0,
                       right: (index == movies.length - 1) ? defaultMargin : 16,
                     ),
-                    child: MovieCard(movies[index]),
+                    child: MovieCard(movies[index], onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(movies[index]),
+                        ),
+                      );
+                    }),
                   ),
                 );
               } else {

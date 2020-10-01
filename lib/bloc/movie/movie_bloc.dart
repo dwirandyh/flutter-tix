@@ -17,6 +17,10 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
       List<Movie> movies = await MovieServices.getMovies(1);
 
       yield MovieLoaded(movies);
+    } else if (event is FetchMovieDetail) {
+      MovieDetail movieDetail = await MovieServices.getDetails(event.movie);
+
+      yield MovieDetailLoaded(movieDetail);
     }
   }
 }

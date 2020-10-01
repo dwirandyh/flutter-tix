@@ -17,3 +17,12 @@ class MovieLoaded extends MovieState {
   @override
   List<Object> get props => [movies];
 }
+
+class MovieDetailLoaded extends MovieState {
+  final MovieDetail movieDetail;
+
+  MovieDetailLoaded(this.movieDetail);
+
+  @override
+  List<Object> get props => [movieDetail];
+}
