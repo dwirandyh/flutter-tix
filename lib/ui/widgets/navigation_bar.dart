@@ -8,7 +8,7 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20, bottom: 22),
+      margin: EdgeInsets.only(top: 20, bottom: 20),
       height: 56,
       child: Stack(
         children: [

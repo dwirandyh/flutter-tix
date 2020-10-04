@@ -32,7 +32,7 @@ class MovieDetailPage extends StatelessWidget {
                         language: movieDetail.language),
                     crewSection(),
                     overviewSection(overview: movieDetail.overview),
-                    bookSection(),
+                    bookSection(context),
                     SizedBox(height: 44)
                   ],
                 );
@@ -207,11 +207,18 @@ class MovieDetailPage extends StatelessWidget {
         ),
       );
 
-  Widget bookSection() => Container(
+  Widget bookSection(BuildContext context) => Container(
         height: 45,
         margin: EdgeInsets.symmetric(horizontal: 55),
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SelectSchedulePage(),
+              ),
+            );
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
