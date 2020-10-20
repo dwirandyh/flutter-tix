@@ -1,6 +1,10 @@
 part of 'pages.dart';
 
 class SelectSchedulePage extends StatefulWidget {
+  final MovieDetail movieDetail;
+
+  SelectSchedulePage(this.movieDetail);
+
   @override
   _SelectSchedulePageState createState() => _SelectSchedulePageState();
 }
@@ -44,14 +48,40 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   SizedBox(height: 10),
                   Align(
                     alignment: Alignment.topCenter,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      elevation: 0,
-                      backgroundColor:
-                          (isValid) ? mainColor : Color(0xFFE4E4E4),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: isValid ? Colors.white : Color(0xFFBEBEBE),
+                    child: BlocBuilder<UserBloc, UserState>(
+                      builder: (_, userState) => FloatingActionButton(
+                        onPressed: () {
+                          if (isValid) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SelectSeatPage(
+                                  Ticket(
+                                    movieDetail: widget.movieDetail,
+                                    theater: selectedTheater,
+                                    time: DateTime(
+                                        selectedDate.year,
+                                        selectedDate.month,
+                                        selectedDate.day,
+                                        selectedTime),
+                                    bookingCode:
+                                        randomAlphaNumeric(12).toUpperCase(),
+                                    seats: null,
+                                    name: (userState as UserLoaded).user.name,
+                                    totalPrice: null,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        elevation: 0,
+                        backgroundColor:
+                            (isValid) ? mainColor : Color(0xFFE4E4E4),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: isValid ? Colors.white : Color(0xFFBEBEBE),
+                        ),
                       ),
                     ),
                   ),

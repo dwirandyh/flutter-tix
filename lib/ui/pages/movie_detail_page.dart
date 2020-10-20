@@ -7,6 +7,8 @@ class MovieDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MovieDetail movieDetail;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -20,7 +22,7 @@ class MovieDetailPage extends StatelessWidget {
             future: MovieServices.getDetails(movie),
             builder: (_, snapshot) {
               if (snapshot.hasData) {
-                MovieDetail movieDetail = snapshot.data;
+                movieDetail = snapshot.data;
                 return ListView(
                   children: [
                     backdrop(context,
@@ -32,7 +34,7 @@ class MovieDetailPage extends StatelessWidget {
                         language: movieDetail.language),
                     crewSection(),
                     overviewSection(overview: movieDetail.overview),
-                    bookSection(context),
+                    bookSection(context, movieDetail),
                     SizedBox(height: 44)
                   ],
                 );
@@ -207,7 +209,8 @@ class MovieDetailPage extends StatelessWidget {
         ),
       );
 
-  Widget bookSection(BuildContext context) => Container(
+  Widget bookSection(BuildContext context, MovieDetail movieDetail) =>
+      Container(
         height: 45,
         margin: EdgeInsets.symmetric(horizontal: 55),
         child: RaisedButton(
@@ -215,7 +218,7 @@ class MovieDetailPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SelectSchedulePage(),
+                builder: (context) => SelectSchedulePage(movieDetail),
               ),
             );
           },
